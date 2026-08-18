@@ -1,0 +1,134 @@
+===== 1. BASELINE REGRESSION (tb_cascade) =====
+=== Cascade testbench start ===
+[T1] result_valid asserted at cycle 8, result = 324 (expected 324)
+[T1] PASS
+[T2] result_valid asserted at cycle 19, result = 532 (expected 532)
+[T2] PASS
+[T3] PASS: MAC0 gate idle confirmed
+[T3] PASS: adder tree gate idle confirmed
+=== Cascade testbench done: 0 error(s) ===
+rtl\tb_cascade.v:144: $finish called at 335000 (1ps)
+
+===== 2. ZERO-SKIP EQUIVALENCE + EDGE CASES (tb_zero_skip) =====
+================================================================
+ tb_zero_skip : zero-skip vs verified baseline, cycle-exact
+================================================================
+
+-- Z1: zero mid-burst (nz, z, nz) --
+  Z1: settled result = 1664  (matches independent model)
+
+-- Z2: zero at burst start (z, nz, nz) --
+  Z2: settled result = 3332  (matches independent model)
+
+-- Z3: zero at burst end (nz, nz, z)  [drain-window case] --
+  Z3: settled result = 4056  (matches independent model)
+
+-- Z4: all-zero burst (every lane, every cycle) --
+  Z4: settled result = 4056  (matches independent model)
+
+-- Z5: 12-cycle zero run, then non-zero resumes --
+  Z5: settled result = 8636  (matches independent model)
+
+-- Z6: per-lane heterogeneous sparsity --
+  Z6: settled result = 10634  (matches independent model)
+
+-- Z7: full level-1 pair idle (lanes 0+1 zero) --
+  Z7: settled result = 11795  (matches independent model)
+
+-- Z8: isolated single-cycle bursts, alternating sparsity --
+  Z8: settled result = 15419  (matches independent model)
+
+-- Z9: partial valid_in mask + sparsity --
+  Z9: settled result = 16606  (matches independent model)
+
+-- Z10: 400-cycle randomized sparse stream --
+  Z10: settled result = 192231  (matches independent model)
+
+-- Z11: gates return to idle after sparse traffic --
+  Z11: MAC0 gate idle confirmed
+  Z11: tree gate idle confirmed
+
+================ ACTIVITY (measured) ===================
+ items driven          : 1535   (of which zero-product: 472 = 30%)
+ mult-reg loads  ref/zs: 2996 / 1063   -> 64% reduction
+ acc-reg  loads  ref/zs: 1535 / 1063   -> 30% reduction
+ tree L1  loads  ref/zs: 1924 / 817   -> 57% reduction
+ tree L2  loads  ref/zs: 962 / 565   -> 41% reduction
+========================================================
+ cycles compared: 636
+ RESULT: PASS - zero-skip is cycle-for-cycle identical to baseline
+========================================================
+tb\tb_zero_skip.v:362: $finish called at 6390000 (1ps)
+
+===== 3. NEGATIVE CONTROL (tb_negative_control) =====
+=====================================================
+ NEGATIVE CONTROL: does the equivalence check fail
+ when the design is actually wrong?
+=====================================================
+
+ cycles compared            : 284
+ result_valid pulses ref    : 208   (non-vacuity check)
+ result_valid pulses zs     : 208
+ result_valid pulses naive  : 77
+
+ divergences  SHIPPED vs ref: 0
+ divergences  NAIVE   vs ref: 278
+
+ >> PASS: checker has teeth. Shipped design clean, naive design caught.
+=====================================================
+negctl\tb_negative_control.v:127: $finish called at 2860000 (1ps)
+
+===== 4. SPARSITY SWEEP (tb_sparsity_sweep) =====
+==========================================================================
+ SPARSITY SWEEP - continuous traffic, 500 cycles per point, 8 lanes
+==========================================================================
+ sparsity |  mult-reg loads    |  acc-reg loads     | treeL1 | treeL2 | div
+   (%)    |  base -> zskip  %  |  base -> zskip  %  |   %    |   %    |
+--------------------------------------------------------------------------
+   0 ( 0) |   4000 ->   4000   0.0 |   3992 ->   3992   0.0 |   0.0  |   0.2  | 0
+  12 (12) |   4000 ->   3515  12.1 |   3992 ->   3509  12.1 |   1.7  |   0.2  | 0
+  24 (23) |   4000 ->   3079  23.0 |   3992 ->   3072  23.0 |   5.2  |   0.7  | 0
+  36 (36) |   4000 ->   2523  36.9 |   3992 ->   2517  36.9 |  14.0  |   2.1  | 0
+  48 (47) |   4000 ->   2095  47.6 |   3992 ->   2090  47.6 |  22.7  |   4.9  | 0
+  60 (58) |   4000 ->   1667  58.3 |   3992 ->   1663  58.3 |  33.8  |  11.4  | 0
+  72 (71) |   4000 ->   1149  71.3 |   3992 ->   1147  71.3 |  50.3  |  27.0  | 0
+  84 (83) |   4000 ->    643  83.9 |   3992 ->    641  83.9 |  70.6  |  50.1  | 0
+  95 (95) |   4000 ->    196  95.1 |   3992 ->    196  95.1 |  90.7  |  82.0  | 0
+--------------------------------------------------------------------------
+ 'sparsity' = requested %; '( )' = actually measured zero-item %.
+ div = cycles where zero-skip output differed from baseline. Must be 0.
+==========================================================================
+tb\tb_sparsity_sweep.v:154: $finish called at 48630000 (1ps)
+
+===== 5. INPUT-REGISTERED VARIANT (tb_zero_skip_ir) =====
+================================================================
+ tb_zero_skip_ir : input-registered zero-skip
+================================================================
+
+-- same edge cases as tb_zero_skip --
+  zero mid-burst    PASS: both variants = 1664 (model agrees)
+  zero burst start  PASS: both variants = 2408 (model agrees)
+  zero burst end    PASS: both variants = 3132 (model agrees)
+  all-zero burst    PASS: both variants = 3132 (model agrees)
+  long zero run     PASS: both variants = 5220 (model agrees)
+  heterogeneous     PASS: both variants = 6298 (model agrees)
+
+-- 400-cycle randomized sparse stream --
+  randomized        PASS: both variants = 181923 (model agrees)
+
+=========== MULTIPLIER-INPUT TOGGLE ACTIVITY ===========
+ items driven                       : 1439 (zero: 430 = 29%)
+ multiplier-input changes, plain zs : 2661
+ multiplier-input changes, input-reg: 1009
+ reduction in multiplier switching  : 62%
+--------------------------------------------------------
+ 'plain zs' is also the BASELINE number: gating the product
+ register does not quiet the multiplier array. The gap
+ between these two rows is real power that plain zero-skip
+ claims from register-load counts but does not deliver.
+========================================================
+ RESULT: PASS - input-registered variant numerically correct
+========================================================
+tb\tb_zero_skip_ir.v:218: $finish called at 5650000 (1ps)
+
+===== ALL SIMULATIONS COMPLETED =====

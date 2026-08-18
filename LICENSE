@@ -1,0 +1,56 @@
+Copyright (c) 2026 Kulamani Rout. All Rights Reserved.
+
+PROPRIETARY AND CONFIDENTIAL — NO LICENSE GRANTED
+
+This repository and all of its contents, including but not limited to source
+code, RTL (register-transfer level) hardware descriptions, testbenches,
+simulation results, synthesis scripts, synthesis and timing reports,
+documentation, and any associated files (collectively, the "Work"), are the
+exclusive property of Kulamani Rout ("the Owner").
+
+NO RIGHTS ARE GRANTED. Unless you have received prior, explicit, written
+permission from the Owner, you are NOT permitted to:
+
+  1. Use, copy, reproduce, or execute any part of the Work, in whole or in
+     part, for any purpose, including personal, academic, research, or
+     commercial use;
+  2. Modify, adapt, translate, or create derivative works based on the Work;
+  3. Distribute, publish, sublicense, sell, lease, or otherwise make the
+     Work or any derivative of it available to any third party, in source
+     or compiled/synthesized form;
+  4. Incorporate the Work, or any portion of it, into any other hardware
+     design, product, patent application, publication, or academic
+     submission;
+  5. Reverse engineer, decompile, or attempt to derive the underlying
+     design methodology from any synthesized, compiled, or binary
+     artifacts included in this repository.
+
+Merely viewing this repository (e.g., because it is hosted on a public or
+shared platform) does NOT constitute permission to do any of the above.
+Visibility is not a license.
+
+REQUESTING PERMISSION
+Any use of the Work beyond private viewing requires the Owner's prior
+written consent. To request permission, contact the Owner directly.
+Permission, if granted, will be provided in a separate written agreement
+specifying the scope of permitted use.
+
+ENFORCEMENT
+Unauthorized use, reproduction, distribution, or derivative use of the Work
+constitutes copyright infringement and, where applicable, misappropriation
+of trade secrets or proprietary technical information. The Owner reserves
+the right to pursue any and all legal remedies available under applicable
+law, including but not limited to injunctive relief and monetary damages,
+against any party found to be in violation of these terms.
+
+NO WARRANTY
+THE WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED. THE OWNER DISCLAIMS ALL LIABILITY FOR ANY DAMAGES ARISING FROM
+THE USE OR MISUSE OF THE WORK BY UNAUTHORIZED PARTIES.
+
+---
+This is a proprietary license, not an open-source license. It is not
+OSI-approved and does not grant any of the rights typically associated
+with open-source or "source-available" licenses (e.g., MIT, Apache-2.0,
+GPL). Absence of an open-source license means default copyright law
+applies in full: all rights are reserved to the Owner by default.

@@ -1,0 +1,57 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
+| Date         : Fri Aug 14 22:30:04 2026
+| Host         : SHANI007 running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file C:/Users/routk/Downloads/clock_gated_mac_array/vivado_synth/baseline/utilization.rpt
+| Design       : mac_cascade_top
+| Device       : xc7k160tffg676-2
+| Speed File   : -2
+| Design State : Synthesized
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++-------------------------------+---------------------------------------+------------+------------+---------+------+-----+--------+--------+------------+
+|            Instance           |                 Module                | Total LUTs | Logic LUTs | LUTRAMs | SRLs | FFs | RAMB36 | RAMB18 | DSP Blocks |
++-------------------------------+---------------------------------------+------------+------------+---------+------+-----+--------+--------+------------+
+| mac_cascade_top               |                                 (top) |        523 |        523 |       0 |    0 | 546 |      0 |      0 |          8 |
+|   (mac_cascade_top)           |                                 (top) |          0 |          0 |       0 |    0 |   8 |      0 |      0 |          0 |
+|   adder_tree_inst             |                      adder_tree_stage |        228 |        228 |       0 |    0 | 242 |      0 |      0 |          0 |
+|     (adder_tree_inst)         |                      adder_tree_stage |        228 |        228 |       0 |    0 | 239 |      0 |      0 |          0 |
+|     gate_inst                 | completion_aware_gate__parameterized0 |          0 |          0 |       0 |    0 |   3 |      0 |      0 |          0 |
+|   mac_array_inst              |                      mac_array_custom |        295 |        295 |       0 |    0 | 296 |      0 |      0 |          8 |
+|     MAC_ARRAY[0].mac_inst     |                         pipelined_mac |         36 |         36 |       0 |    0 |  37 |      0 |      0 |          1 |
+|       (MAC_ARRAY[0].mac_inst) |                         pipelined_mac |         32 |         32 |       0 |    0 |  34 |      0 |      0 |          1 |
+|       gate_inst               |              completion_aware_gate_13 |          4 |          4 |       0 |    0 |   3 |      0 |      0 |          0 |
+|     MAC_ARRAY[1].mac_inst     |                       pipelined_mac_0 |         36 |         36 |       0 |    0 |  37 |      0 |      0 |          1 |
+|       (MAC_ARRAY[1].mac_inst) |                       pipelined_mac_0 |         32 |         32 |       0 |    0 |  34 |      0 |      0 |          1 |
+|       gate_inst               |              completion_aware_gate_12 |          4 |          4 |       0 |    0 |   3 |      0 |      0 |          0 |
+|     MAC_ARRAY[2].mac_inst     |                       pipelined_mac_1 |         36 |         36 |       0 |    0 |  37 |      0 |      0 |          1 |
+|       (MAC_ARRAY[2].mac_inst) |                       pipelined_mac_1 |         32 |         32 |       0 |    0 |  34 |      0 |      0 |          1 |
+|       gate_inst               |              completion_aware_gate_11 |          4 |          4 |       0 |    0 |   3 |      0 |      0 |          0 |
+|     MAC_ARRAY[3].mac_inst     |                       pipelined_mac_2 |         36 |         36 |       0 |    0 |  37 |      0 |      0 |          1 |
+|       (MAC_ARRAY[3].mac_inst) |                       pipelined_mac_2 |         32 |         32 |       0 |    0 |  34 |      0 |      0 |          1 |
+|       gate_inst               |              completion_aware_gate_10 |          4 |          4 |       0 |    0 |   3 |      0 |      0 |          0 |
+|     MAC_ARRAY[4].mac_inst     |                       pipelined_mac_3 |         36 |         36 |       0 |    0 |  37 |      0 |      0 |          1 |
+|       (MAC_ARRAY[4].mac_inst) |                       pipelined_mac_3 |         32 |         32 |       0 |    0 |  34 |      0 |      0 |          1 |
+|       gate_inst               |               completion_aware_gate_9 |          4 |          4 |       0 |    0 |   3 |      0 |      0 |          0 |
+|     MAC_ARRAY[5].mac_inst     |                       pipelined_mac_4 |         37 |         37 |       0 |    0 |  37 |      0 |      0 |          1 |
+|       (MAC_ARRAY[5].mac_inst) |                       pipelined_mac_4 |         32 |         32 |       0 |    0 |  34 |      0 |      0 |          1 |
+|       gate_inst               |               completion_aware_gate_8 |          5 |          5 |       0 |    0 |   3 |      0 |      0 |          0 |
+|     MAC_ARRAY[6].mac_inst     |                       pipelined_mac_5 |         42 |         42 |       0 |    0 |  37 |      0 |      0 |          1 |
+|       (MAC_ARRAY[6].mac_inst) |                       pipelined_mac_5 |         36 |         36 |       0 |    0 |  34 |      0 |      0 |          1 |
+|       gate_inst               |               completion_aware_gate_7 |          6 |          6 |       0 |    0 |   3 |      0 |      0 |          0 |
+|     MAC_ARRAY[7].mac_inst     |                       pipelined_mac_6 |         36 |         36 |       0 |    0 |  37 |      0 |      0 |          1 |
+|       (MAC_ARRAY[7].mac_inst) |                       pipelined_mac_6 |         32 |         32 |       0 |    0 |  34 |      0 |      0 |          1 |
+|       gate_inst               |                 completion_aware_gate |          4 |          4 |       0 |    0 |   3 |      0 |      0 |          0 |
++-------------------------------+---------------------------------------+------------+------------+---------+------+-----+--------+--------+------------+
+
+

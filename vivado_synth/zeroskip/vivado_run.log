@@ -1,0 +1,355 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Fri Aug 14 22:30:21 2026
+# Process ID: 4876
+# Current directory: C:/Users/routk/Downloads/clock_gated_mac_array/vivado_synth/zeroskip
+# Command line: vivado.exe -mode batch -source run_synth.tcl -nojournal -log vivado_run.log
+# Log file: C:/Users/routk/Downloads/clock_gated_mac_array/vivado_synth/zeroskip/vivado_run.log
+# Journal file: 
+# Running On: SHANI007, OS: Windows, CPU Frequency: 2595 MHz, CPU Physical cores: 4, Host memory: 14972 MB
+#-----------------------------------------------------------
+source run_synth.tcl
+# set outdir "C:/Users/routk/Downloads/clock_gated_mac_array/vivado_synth/zeroskip"
+# set rtl    "C:/Users/routk/Downloads/clock_gated_mac_array/rtl"
+# read_verilog -sv [list \
+#     "$rtl/completion_aware_gate.v" \
+#     "$rtl/zero_skip_gate.v" \
+#     "$rtl/pipelined_mac_zs.v" \
+#     "$rtl/adder_tree_stage_zs.v" \
+#     "$rtl/mac_cascade_zs_top.v" \
+# ]
+WARNING: [Board 49-55] Pin file C:/Xilinx/Vivado/2023.2/data/boards/board_files/genesys-2/part0_pins.xml is not available
+CRITICAL WARNING: [Board 49-56] Problem parsing board file - C:/Xilinx/Vivado/2023.2/data/boards/board_files/genesys-2/board.xml.
+Resolution: Please contact your board vendor with this message.
+read_verilog: Time (s): cpu = 00:00:13 ; elapsed = 00:00:30 . Memory (MB): peak = 498.816 ; gain = 218.047
+# synth_design -top mac_cascade_zs_top -part xc7k160tffg676-2 -mode out_of_context
+Command: synth_design -top mac_cascade_zs_top -part xc7k160tffg676-2 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7k160t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7k160t'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 21644
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:09 ; elapsed = 00:00:20 . Memory (MB): peak = 944.324 ; gain = 440.516
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'mac_cascade_zs_top' [C:/Users/routk/Downloads/clock_gated_mac_array/rtl/mac_cascade_zs_top.v:60]
+INFO: [Synth 8-6157] synthesizing module 'mac_array_zs' [C:/Users/routk/Downloads/clock_gated_mac_array/rtl/mac_cascade_zs_top.v:12]
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+	Parameter NUM_MACS bound to: 8 - type: integer 
+	Parameter ENABLE_ZERO_SKIP bound to: 1 - type: integer 
+	Parameter AGGRESSIVE_IDLE bound to: 0 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'pipelined_mac_zs' [C:/Users/routk/Downloads/clock_gated_mac_array/rtl/pipelined_mac_zs.v:33]
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+	Parameter ENABLE_ZERO_SKIP bound to: 1 - type: integer 
+	Parameter AGGRESSIVE_IDLE bound to: 0 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'zero_skip_gate' [C:/Users/routk/Downloads/clock_gated_mac_array/rtl/zero_skip_gate.v:48]
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+	Parameter DRAIN_DEPTH bound to: 2 - type: integer 
+	Parameter ENABLE_ZERO_SKIP bound to: 1 - type: integer 
+	Parameter AGGRESSIVE_IDLE bound to: 0 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'completion_aware_gate' [C:/Users/routk/Downloads/clock_gated_mac_array/rtl/completion_aware_gate.v:30]
+	Parameter DRAIN_DEPTH bound to: 2 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'completion_aware_gate' (0#1) [C:/Users/routk/Downloads/clock_gated_mac_array/rtl/completion_aware_gate.v:30]
+INFO: [Synth 8-6155] done synthesizing module 'zero_skip_gate' (0#1) [C:/Users/routk/Downloads/clock_gated_mac_array/rtl/zero_skip_gate.v:48]
+INFO: [Synth 8-6155] done synthesizing module 'pipelined_mac_zs' (0#1) [C:/Users/routk/Downloads/clock_gated_mac_array/rtl/pipelined_mac_zs.v:33]
+INFO: [Synth 8-6155] done synthesizing module 'mac_array_zs' (0#1) [C:/Users/routk/Downloads/clock_gated_mac_array/rtl/mac_cascade_zs_top.v:12]
+INFO: [Synth 8-6157] synthesizing module 'adder_tree_stage_zs' [C:/Users/routk/Downloads/clock_gated_mac_array/rtl/adder_tree_stage_zs.v:43]
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+	Parameter NUM_MACS bound to: 8 - type: integer 
+	Parameter ENABLE_ZERO_SKIP bound to: 1 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'completion_aware_gate__parameterized0' [C:/Users/routk/Downloads/clock_gated_mac_array/rtl/completion_aware_gate.v:30]
+	Parameter DRAIN_DEPTH bound to: 3 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'completion_aware_gate__parameterized0' (0#1) [C:/Users/routk/Downloads/clock_gated_mac_array/rtl/completion_aware_gate.v:30]
+INFO: [Synth 8-6155] done synthesizing module 'adder_tree_stage_zs' (0#1) [C:/Users/routk/Downloads/clock_gated_mac_array/rtl/adder_tree_stage_zs.v:43]
+INFO: [Synth 8-6155] done synthesizing module 'mac_cascade_zs_top' (0#1) [C:/Users/routk/Downloads/clock_gated_mac_array/rtl/mac_cascade_zs_top.v:60]
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:12 ; elapsed = 00:00:26 . Memory (MB): peak = 1054.062 ; gain = 550.254
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:27 . Memory (MB): peak = 1054.062 ; gain = 550.254
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7k160tffg676-2
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:13 ; elapsed = 00:00:27 . Memory (MB): peak = 1054.062 ; gain = 550.254
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xc7k160tffg676-2
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:27 . Memory (MB): peak = 1054.062 ; gain = 550.254
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   35 Bit       Adders := 1     
+	   2 Input   34 Bit       Adders := 2     
+	   2 Input   33 Bit       Adders := 4     
+	   2 Input    2 Bit       Adders := 9     
++---Registers : 
+	               35 Bit    Registers := 1     
+	               34 Bit    Registers := 2     
+	               33 Bit    Registers := 4     
+	               32 Bit    Registers := 8     
+	                4 Bit    Registers := 1     
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 10    
+	                1 Bit    Registers := 42    
++---Muxes : 
+	   2 Input    3 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 9     
+	   2 Input    1 Bit        Muxes := 27    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 600 (col length:100)
+BRAMs: 650 (col length: RAMB18 100 RAMB36 50)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+DSP Report: Generating DSP mac_array_inst/MAC_ARRAY[7].mac_inst/mult_stage0, operation Mode is: A*B.
+DSP Report: operator mac_array_inst/MAC_ARRAY[7].mac_inst/mult_stage0 is absorbed into DSP mac_array_inst/MAC_ARRAY[7].mac_inst/mult_stage0.
+DSP Report: Generating DSP mac_array_inst/MAC_ARRAY[6].mac_inst/mult_stage0, operation Mode is: A*B.
+DSP Report: operator mac_array_inst/MAC_ARRAY[6].mac_inst/mult_stage0 is absorbed into DSP mac_array_inst/MAC_ARRAY[6].mac_inst/mult_stage0.
+DSP Report: Generating DSP mac_array_inst/MAC_ARRAY[5].mac_inst/mult_stage0, operation Mode is: A*B.
+DSP Report: operator mac_array_inst/MAC_ARRAY[5].mac_inst/mult_stage0 is absorbed into DSP mac_array_inst/MAC_ARRAY[5].mac_inst/mult_stage0.
+DSP Report: Generating DSP mac_array_inst/MAC_ARRAY[4].mac_inst/mult_stage0, operation Mode is: A*B.
+DSP Report: operator mac_array_inst/MAC_ARRAY[4].mac_inst/mult_stage0 is absorbed into DSP mac_array_inst/MAC_ARRAY[4].mac_inst/mult_stage0.
+DSP Report: Generating DSP mac_array_inst/MAC_ARRAY[3].mac_inst/mult_stage0, operation Mode is: A*B.
+DSP Report: operator mac_array_inst/MAC_ARRAY[3].mac_inst/mult_stage0 is absorbed into DSP mac_array_inst/MAC_ARRAY[3].mac_inst/mult_stage0.
+DSP Report: Generating DSP mac_array_inst/MAC_ARRAY[2].mac_inst/mult_stage0, operation Mode is: A*B.
+DSP Report: operator mac_array_inst/MAC_ARRAY[2].mac_inst/mult_stage0 is absorbed into DSP mac_array_inst/MAC_ARRAY[2].mac_inst/mult_stage0.
+DSP Report: Generating DSP mac_array_inst/MAC_ARRAY[1].mac_inst/mult_stage0, operation Mode is: A*B.
+DSP Report: operator mac_array_inst/MAC_ARRAY[1].mac_inst/mult_stage0 is absorbed into DSP mac_array_inst/MAC_ARRAY[1].mac_inst/mult_stage0.
+DSP Report: Generating DSP mac_array_inst/MAC_ARRAY[0].mac_inst/mult_stage0, operation Mode is: A*B.
+DSP Report: operator mac_array_inst/MAC_ARRAY[0].mac_inst/mult_stage0 is absorbed into DSP mac_array_inst/MAC_ARRAY[0].mac_inst/mult_stage0.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:27 ; elapsed = 00:01:00 . Memory (MB): peak = 1327.391 ; gain = 823.582
+---------------------------------------------------------------------------------
+ Sort Area is  mac_array_inst/MAC_ARRAY[0].mac_inst/mult_stage0_0 : 0 0 : 1946 1946 : Used 1 time 0
+ Sort Area is  mac_array_inst/MAC_ARRAY[1].mac_inst/mult_stage0_2 : 0 0 : 1946 1946 : Used 1 time 0
+ Sort Area is  mac_array_inst/MAC_ARRAY[2].mac_inst/mult_stage0_3 : 0 0 : 1946 1946 : Used 1 time 0
+ Sort Area is  mac_array_inst/MAC_ARRAY[3].mac_inst/mult_stage0_4 : 0 0 : 1946 1946 : Used 1 time 0
+ Sort Area is  mac_array_inst/MAC_ARRAY[4].mac_inst/mult_stage0_5 : 0 0 : 1946 1946 : Used 1 time 0
+ Sort Area is  mac_array_inst/MAC_ARRAY[5].mac_inst/mult_stage0_6 : 0 0 : 1946 1946 : Used 1 time 0
+ Sort Area is  mac_array_inst/MAC_ARRAY[6].mac_inst/mult_stage0_7 : 0 0 : 1946 1946 : Used 1 time 0
+ Sort Area is  mac_array_inst/MAC_ARRAY[7].mac_inst/mult_stage0_8 : 0 0 : 1946 1946 : Used 1 time 0
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
++-----------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name      | DSP Mapping | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++-----------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|pipelined_mac_zs | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|pipelined_mac_zs | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|pipelined_mac_zs | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|pipelined_mac_zs | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|pipelined_mac_zs | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|pipelined_mac_zs | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|pipelined_mac_zs | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|pipelined_mac_zs | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
++-----------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:27 ; elapsed = 00:01:00 . Memory (MB): peak = 1327.391 ; gain = 823.582
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:28 ; elapsed = 00:01:01 . Memory (MB): peak = 1327.391 ; gain = 823.582
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:36 ; elapsed = 00:01:19 . Memory (MB): peak = 1327.391 ; gain = 823.582
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:36 ; elapsed = 00:01:19 . Memory (MB): peak = 1327.391 ; gain = 823.582
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:36 ; elapsed = 00:01:19 . Memory (MB): peak = 1327.391 ; gain = 823.582
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:36 ; elapsed = 00:01:19 . Memory (MB): peak = 1327.391 ; gain = 823.582
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:36 ; elapsed = 00:01:19 . Memory (MB): peak = 1327.391 ; gain = 823.582
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:36 ; elapsed = 00:01:19 . Memory (MB): peak = 1327.391 ; gain = 823.582
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+DSP Final Report (the ' indicates corresponding REG is set)
++-----------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name      | DSP Mapping | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++-----------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|pipelined_mac_zs | (A*B)'      | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|pipelined_mac_zs | (A*B)'      | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|pipelined_mac_zs | (A*B)'      | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|pipelined_mac_zs | (A*B)'      | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|pipelined_mac_zs | (A*B)'      | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|pipelined_mac_zs | (A*B)'      | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|pipelined_mac_zs | (A*B)'      | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|pipelined_mac_zs | (A*B)'      | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 1    | 
++-----------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+--------+------+
+|      |Cell    |Count |
++------+--------+------+
+|1     |CARRY4  |   127|
+|2     |DSP48E1 |     8|
+|3     |LUT2    |   482|
+|4     |LUT3    |   283|
+|5     |LUT4    |    61|
+|6     |LUT5    |    31|
+|7     |LUT6    |    33|
+|8     |FDCE    |   568|
++------+--------+------+
+
+Report Instance Areas: 
++------+----------------------------+--------------------------------------+------+
+|      |Instance                    |Module                                |Cells |
++------+----------------------------+--------------------------------------+------+
+|1     |top                         |                                      |  1593|
+|2     |  adder_tree_inst           |adder_tree_stage_zs                   |   515|
+|3     |    gate_inst               |completion_aware_gate__parameterized0 |    13|
+|4     |  mac_array_inst            |mac_array_zs                          |  1070|
+|5     |    \MAC_ARRAY[0].mac_inst  |pipelined_mac_zs                      |   138|
+|6     |      gate_inst             |zero_skip_gate_19                     |    11|
+|7     |        gate_inst           |completion_aware_gate_20              |    11|
+|8     |    \MAC_ARRAY[1].mac_inst  |pipelined_mac_zs_0                    |   128|
+|9     |      gate_inst             |zero_skip_gate_17                     |    11|
+|10    |        gate_inst           |completion_aware_gate_18              |    11|
+|11    |    \MAC_ARRAY[2].mac_inst  |pipelined_mac_zs_1                    |   143|
+|12    |      gate_inst             |zero_skip_gate_15                     |    12|
+|13    |        gate_inst           |completion_aware_gate_16              |    11|
+|14    |    \MAC_ARRAY[3].mac_inst  |pipelined_mac_zs_2                    |   128|
+|15    |      gate_inst             |zero_skip_gate_13                     |    11|
+|16    |        gate_inst           |completion_aware_gate_14              |    11|
+|17    |    \MAC_ARRAY[4].mac_inst  |pipelined_mac_zs_3                    |   138|
+|18    |      gate_inst             |zero_skip_gate_11                     |    11|
+|19    |        gate_inst           |completion_aware_gate_12              |    11|
+|20    |    \MAC_ARRAY[5].mac_inst  |pipelined_mac_zs_4                    |   129|
+|21    |      gate_inst             |zero_skip_gate_9                      |    12|
+|22    |        gate_inst           |completion_aware_gate_10              |    11|
+|23    |    \MAC_ARRAY[6].mac_inst  |pipelined_mac_zs_5                    |   138|
+|24    |      gate_inst             |zero_skip_gate_7                      |    11|
+|25    |        gate_inst           |completion_aware_gate_8               |    11|
+|26    |    \MAC_ARRAY[7].mac_inst  |pipelined_mac_zs_6                    |   128|
+|27    |      gate_inst             |zero_skip_gate                        |    11|
+|28    |        gate_inst           |completion_aware_gate                 |    11|
++------+----------------------------+--------------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:36 ; elapsed = 00:01:19 . Memory (MB): peak = 1327.391 ; gain = 823.582
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:36 ; elapsed = 00:01:19 . Memory (MB): peak = 1327.391 ; gain = 823.582
+Synthesis Optimization Complete : Time (s): cpu = 00:00:36 ; elapsed = 00:01:19 . Memory (MB): peak = 1327.391 ; gain = 823.582
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.082 . Memory (MB): peak = 1337.227 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 135 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1378.328 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: 9ffbac5d
+INFO: [Common 17-83] Releasing license: Synthesis
+26 Infos, 1 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:39 ; elapsed = 00:01:30 . Memory (MB): peak = 1378.328 ; gain = 879.512
+# create_clock -period 5.000 -name clk [get_ports clk] -add
+# set_input_delay  -clock clk 0.5 [all_inputs]
+WARNING: [Constraints 18-6211] Setting input delay on a clock pin 'clk' relative to clock 'clk' defined on the same pin is not supported, ignoring it
+# set_output_delay -clock clk 0.5 [all_outputs]
+# write_checkpoint -force "$outdir/post_synth.dcp"
+WARNING: [Constraints 18-6211] Setting input delay on a clock pin 'clk' relative to clock 'clk' defined on the same pin is not supported, ignoring it
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.015 . Memory (MB): peak = 1692.254 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/routk/Downloads/clock_gated_mac_array/vivado_synth/zeroskip/post_synth.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:11 ; elapsed = 00:00:26 . Memory (MB): peak = 1696.750 ; gain = 318.422
+# report_timing_summary -delay_type min_max -check_timing -max_paths 5 -file "$outdir/timing_summary.rpt"
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+WARNING: [Timing 38-242] The property HD.CLK_SRC of clock port "clk" is not set. In out-of-context mode, this prevents timing estimation for clock delay/skew
+Resolution: Set the HD.CLK_SRC property of the out-of-context port to the location of the clock buffer instance in the top-level design
+# report_utilization -hierarchical -file "$outdir/utilization.rpt"
+# report_power -file "$outdir/power_vectorless.rpt"
+Command: report_power -file C:/Users/routk/Downloads/clock_gated_mac_array/vivado_synth/zeroskip/power_vectorless.rpt
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+0 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+report_power completed successfully
+# puts "===ZEROSKIP_SYNTH_DONE==="
+===ZEROSKIP_SYNTH_DONE===
+INFO: [Common 17-206] Exiting Vivado at Fri Aug 14 22:33:03 2026...

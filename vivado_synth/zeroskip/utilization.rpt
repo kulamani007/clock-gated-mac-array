@@ -1,0 +1,67 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
+| Date         : Fri Aug 14 22:33:02 2026
+| Host         : SHANI007 running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file C:/Users/routk/Downloads/clock_gated_mac_array/vivado_synth/zeroskip/utilization.rpt
+| Design       : mac_cascade_zs_top
+| Device       : xc7k160tffg676-2
+| Speed File   : -2
+| Design State : Synthesized
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++-------------------------------+---------------------------------------+------------+------------+---------+------+-----+--------+--------+------------+
+|            Instance           |                 Module                | Total LUTs | Logic LUTs | LUTRAMs | SRLs | FFs | RAMB36 | RAMB18 | DSP Blocks |
++-------------------------------+---------------------------------------+------------+------------+---------+------+-----+--------+--------+------------+
+| mac_cascade_zs_top            |                                 (top) |        614 |        614 |       0 |    0 | 568 |      0 |      0 |          8 |
+|   (mac_cascade_zs_top)        |                                 (top) |          0 |          0 |       0 |    0 |   8 |      0 |      0 |          0 |
+|   adder_tree_inst             |                   adder_tree_stage_zs |        237 |        237 |       0 |    0 | 248 |      0 |      0 |          0 |
+|     (adder_tree_inst)         |                   adder_tree_stage_zs |        230 |        230 |       0 |    0 | 245 |      0 |      0 |          0 |
+|     gate_inst                 | completion_aware_gate__parameterized0 |          7 |          7 |       0 |    0 |   3 |      0 |      0 |          0 |
+|   mac_array_inst              |                          mac_array_zs |        377 |        377 |       0 |    0 | 312 |      0 |      0 |          8 |
+|     MAC_ARRAY[0].mac_inst     |                      pipelined_mac_zs |         47 |         47 |       0 |    0 |  39 |      0 |      0 |          1 |
+|       (MAC_ARRAY[0].mac_inst) |                      pipelined_mac_zs |         42 |         42 |       0 |    0 |  36 |      0 |      0 |          1 |
+|       gate_inst               |                     zero_skip_gate_19 |          5 |          5 |       0 |    0 |   3 |      0 |      0 |          0 |
+|         gate_inst             |              completion_aware_gate_20 |          5 |          5 |       0 |    0 |   3 |      0 |      0 |          0 |
+|     MAC_ARRAY[1].mac_inst     |                    pipelined_mac_zs_0 |         46 |         46 |       0 |    0 |  39 |      0 |      0 |          1 |
+|       (MAC_ARRAY[1].mac_inst) |                    pipelined_mac_zs_0 |         41 |         41 |       0 |    0 |  36 |      0 |      0 |          1 |
+|       gate_inst               |                     zero_skip_gate_17 |          5 |          5 |       0 |    0 |   3 |      0 |      0 |          0 |
+|         gate_inst             |              completion_aware_gate_18 |          5 |          5 |       0 |    0 |   3 |      0 |      0 |          0 |
+|     MAC_ARRAY[2].mac_inst     |                    pipelined_mac_zs_1 |         51 |         51 |       0 |    0 |  39 |      0 |      0 |          1 |
+|       (MAC_ARRAY[2].mac_inst) |                    pipelined_mac_zs_1 |         45 |         45 |       0 |    0 |  36 |      0 |      0 |          1 |
+|       gate_inst               |                     zero_skip_gate_15 |          6 |          6 |       0 |    0 |   3 |      0 |      0 |          0 |
+|         (gate_inst)           |                     zero_skip_gate_15 |          1 |          1 |       0 |    0 |   0 |      0 |      0 |          0 |
+|         gate_inst             |              completion_aware_gate_16 |          5 |          5 |       0 |    0 |   3 |      0 |      0 |          0 |
+|     MAC_ARRAY[3].mac_inst     |                    pipelined_mac_zs_2 |         46 |         46 |       0 |    0 |  39 |      0 |      0 |          1 |
+|       (MAC_ARRAY[3].mac_inst) |                    pipelined_mac_zs_2 |         41 |         41 |       0 |    0 |  36 |      0 |      0 |          1 |
+|       gate_inst               |                     zero_skip_gate_13 |          5 |          5 |       0 |    0 |   3 |      0 |      0 |          0 |
+|         gate_inst             |              completion_aware_gate_14 |          5 |          5 |       0 |    0 |   3 |      0 |      0 |          0 |
+|     MAC_ARRAY[4].mac_inst     |                    pipelined_mac_zs_3 |         47 |         47 |       0 |    0 |  39 |      0 |      0 |          1 |
+|       (MAC_ARRAY[4].mac_inst) |                    pipelined_mac_zs_3 |         42 |         42 |       0 |    0 |  36 |      0 |      0 |          1 |
+|       gate_inst               |                     zero_skip_gate_11 |          5 |          5 |       0 |    0 |   3 |      0 |      0 |          0 |
+|         gate_inst             |              completion_aware_gate_12 |          5 |          5 |       0 |    0 |   3 |      0 |      0 |          0 |
+|     MAC_ARRAY[5].mac_inst     |                    pipelined_mac_zs_4 |         47 |         47 |       0 |    0 |  39 |      0 |      0 |          1 |
+|       (MAC_ARRAY[5].mac_inst) |                    pipelined_mac_zs_4 |         41 |         41 |       0 |    0 |  36 |      0 |      0 |          1 |
+|       gate_inst               |                      zero_skip_gate_9 |          6 |          6 |       0 |    0 |   3 |      0 |      0 |          0 |
+|         (gate_inst)           |                      zero_skip_gate_9 |          1 |          1 |       0 |    0 |   0 |      0 |      0 |          0 |
+|         gate_inst             |              completion_aware_gate_10 |          5 |          5 |       0 |    0 |   3 |      0 |      0 |          0 |
+|     MAC_ARRAY[6].mac_inst     |                    pipelined_mac_zs_5 |         47 |         47 |       0 |    0 |  39 |      0 |      0 |          1 |
+|       (MAC_ARRAY[6].mac_inst) |                    pipelined_mac_zs_5 |         42 |         42 |       0 |    0 |  36 |      0 |      0 |          1 |
+|       gate_inst               |                      zero_skip_gate_7 |          5 |          5 |       0 |    0 |   3 |      0 |      0 |          0 |
+|         gate_inst             |               completion_aware_gate_8 |          5 |          5 |       0 |    0 |   3 |      0 |      0 |          0 |
+|     MAC_ARRAY[7].mac_inst     |                    pipelined_mac_zs_6 |         46 |         46 |       0 |    0 |  39 |      0 |      0 |          1 |
+|       (MAC_ARRAY[7].mac_inst) |                    pipelined_mac_zs_6 |         41 |         41 |       0 |    0 |  36 |      0 |      0 |          1 |
+|       gate_inst               |                        zero_skip_gate |          5 |          5 |       0 |    0 |   3 |      0 |      0 |          0 |
+|         gate_inst             |                 completion_aware_gate |          5 |          5 |       0 |    0 |   3 |      0 |      0 |          0 |
++-------------------------------+---------------------------------------+------------+------------+---------+------+-----+--------+--------+------------+
+
+

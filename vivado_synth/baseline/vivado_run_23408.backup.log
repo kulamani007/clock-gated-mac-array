@@ -1,0 +1,28 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Fri Aug 14 22:21:35 2026
+# Process ID: 23408
+# Current directory: C:/Users/routk/Downloads/clock_gated_mac_array/vivado_synth/baseline
+# Command line: vivado.exe -mode batch -source run_synth.tcl -nojournal -log vivado_run.log
+# Log file: C:/Users/routk/Downloads/clock_gated_mac_array/vivado_synth/baseline/vivado_run.log
+# Journal file: 
+# Running On: SHANI007, OS: Windows, CPU Frequency: 2595 MHz, CPU Physical cores: 4, Host memory: 14972 MB
+#-----------------------------------------------------------
+source run_synth.tcl
+# set outdir "C:/Users/routk/Downloads/clock_gated_mac_array/vivado_synth/baseline"
+# set rtl    "C:/Users/routk/Downloads/clock_gated_mac_array/rtl"
+# read_verilog -sv [list \
+#     "$rtl/completion_aware_gate.v" \
+#     "$rtl/pipelined_mac.v" \
+#     "$rtl/adder_tree_stage.v" \
+#     "$rtl/mac_array_and_cascade_top.v" \
+# ]
+WARNING: [Board 49-55] Pin file C:/Xilinx/Vivado/2023.2/data/boards/board_files/genesys-2/part0_pins.xml is not available
+CRITICAL WARNING: [Board 49-56] Problem parsing board file - C:/Xilinx/Vivado/2023.2/data/boards/board_files/genesys-2/board.xml.
+Resolution: Please contact your board vendor with this message.
+read_verilog: Time (s): cpu = 00:00:12 ; elapsed = 00:00:40 . Memory (MB): peak = 498.746 ; gain = 219.941
+ERROR: [Common 17-53] User Exception: No open design. Please open an elaborated, synthesized or implemented design before executing this command.
+INFO: [Common 17-206] Exiting Vivado at Fri Aug 14 22:22:45 2026...

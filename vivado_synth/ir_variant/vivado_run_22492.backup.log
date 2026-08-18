@@ -1,0 +1,51 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Fri Aug 14 22:33:15 2026
+# Process ID: 22492
+# Current directory: C:/Users/routk/Downloads/clock_gated_mac_array/vivado_synth/ir_variant
+# Command line: vivado.exe -mode batch -source run_synth.tcl -nojournal -log vivado_run.log
+# Log file: C:/Users/routk/Downloads/clock_gated_mac_array/vivado_synth/ir_variant/vivado_run.log
+# Journal file: 
+# Running On: SHANI007, OS: Windows, CPU Frequency: 2595 MHz, CPU Physical cores: 4, Host memory: 14972 MB
+#-----------------------------------------------------------
+source run_synth.tcl
+# set outdir "C:/Users/routk/Downloads/clock_gated_mac_array/vivado_synth/ir_variant"
+# set rtl    "C:/Users/routk/Downloads/clock_gated_mac_array/rtl"
+# read_verilog -sv [list \
+#     "$rtl/completion_aware_gate.v" \
+#     "$rtl/pipelined_mac_zs_ir.v" \
+# ]
+WARNING: [Board 49-55] Pin file C:/Xilinx/Vivado/2023.2/data/boards/board_files/genesys-2/part0_pins.xml is not available
+CRITICAL WARNING: [Board 49-56] Problem parsing board file - C:/Xilinx/Vivado/2023.2/data/boards/board_files/genesys-2/board.xml.
+Resolution: Please contact your board vendor with this message.
+read_verilog: Time (s): cpu = 00:00:12 ; elapsed = 00:00:30 . Memory (MB): peak = 500.094 ; gain = 221.086
+# synth_design -top pipelined_mac_zs_ir -part xc7k160tffg676-2 -mode out_of_context
+Command: synth_design -top pipelined_mac_zs_ir -part xc7k160tffg676-2 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7k160t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7k160t'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 19772
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:10 ; elapsed = 00:00:19 . Memory (MB): peak = 943.457 ; gain = 438.383
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'pipelined_mac_zs_ir' [C:/Users/routk/Downloads/clock_gated_mac_array/rtl/pipelined_mac_zs_ir.v:40]
+ERROR: [Synth 8-439] module 'zero_skip_gate' not found [C:/Users/routk/Downloads/clock_gated_mac_array/rtl/pipelined_mac_zs_ir.v:66]
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+	Parameter DRAIN_DEPTH bound to: 32'sb00000000000000000000000000000011 
+	Parameter ENABLE_ZERO_SKIP bound to: 1 - type: integer 
+	Parameter AGGRESSIVE_IDLE bound to: 32'sb00000000000000000000000000000000 
+ERROR: [Synth 8-6156] failed synthesizing module 'pipelined_mac_zs_ir' [C:/Users/routk/Downloads/clock_gated_mac_array/rtl/pipelined_mac_zs_ir.v:40]
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:11 ; elapsed = 00:00:24 . Memory (MB): peak = 1050.094 ; gain = 545.020
+---------------------------------------------------------------------------------
+synthesize failed
+INFO: [Common 17-83] Releasing license: Synthesis
+6 Infos, 0 Warnings, 0 Critical Warnings and 3 Errors encountered.
+synth_design failed
+ERROR: [Common 17-69] Command failed: Vivado Synthesis failed
+INFO: [Common 17-206] Exiting Vivado at Fri Aug 14 22:34:23 2026...
