@@ -1000,6 +1000,12 @@ cd paper && pdflatex main && pdflatex main
   verified baseline; the negative control is caught.
 - FPGA and ASIC implementation complete; power measured with stated caveats.
 - Paper drafted for IEEE TCAS-II Express Briefs, 5 pages (at the limit).
+  Figures: Fig. 1 the architecture (cascade + the split enable inside a lane),
+  Fig. 2 the composability hazard as a timing diagram. Tables I–IV are
+  verification, FPGA implementation, power, and sky130 standard-cell. The
+  power-vs-sparsity plot (`paper/fig_power.py`) is deliberately *not* in the
+  paper — it restates Table III and the space went to the architecture figure
+  instead — but it is kept for talks.
 - Repo `kulamani007/clock-gated-mac-array`, Apache-2.0, **private until
   submission** — must be flipped public *at* submission, since reviewers are who
   needs it.

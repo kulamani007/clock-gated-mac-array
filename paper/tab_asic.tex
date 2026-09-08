@@ -2,14 +2,14 @@
 \caption{Standard-cell synthesis, sky130\_fd\_sc\_hd (typ., 25\,$^{\circ}$C, 1.8\,V)}
 \label{tab:asic}
 \centering\footnotesize
-\setlength{\tabcolsep}{4pt}
+\setlength{\tabcolsep}{3pt}
 \begin{tabular}{lcccc}
 \toprule
 Design & area & vs.\ & \multicolumn{2}{c}{flip-flops}\\
 \cmidrule(l){4-5}
 & ($\mu$m$^2$) & base & total & native-EN\\
 \midrule
-Baseline (2-stage, async reset) & 111,244 & +0.0\% & 794 & 0\\
+Baseline (2-stage, async reset) & 111,244 & --- & 794 & 0\\
 \quad + split-enable zero-skip & 113,032 & +1.6\% & 816 & 0\\
 3-stage, gated operands, async reset & 123,614 & +11.1\% & 1088 & 0\\
 3-stage, no datapath reset (control) & 117,311 & +5.5\% & 1058 & 512\\

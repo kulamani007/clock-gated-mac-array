@@ -9,15 +9,16 @@ NAME=[("base",r"Baseline (2-stage, async reset)"),
 L=[r"\begin{table}[t]",
    r"\caption{Standard-cell synthesis, sky130\_fd\_sc\_hd (typ., 25\,$^{\circ}$C, 1.8\,V)}",
    r"\label{tab:asic}",r"\centering\footnotesize",
-   r"\setlength{\tabcolsep}{4pt}",
+   r"\setlength{\tabcolsep}{3pt}",
    r"\begin{tabular}{lcccc}",r"\toprule",
    r"Design & area & vs.\ & \multicolumn{2}{c}{flip-flops}\\",
    r"\cmidrule(l){4-5}",
    r"& ($\mu$m$^2$) & base & total & native-EN\\",r"\midrule"]
 for t,n in NAME:
     r=d[t]; a=float(r["area_um2"])
-    L.append("%s & %s & %+.1f\\%% & %s & %s\\\\" % (
-        n, format(int(a), ","), 100*(a-b)/b, r["ff_total"], r["ff_native_enable"]))
+    delta = "---" if t == "base" else ("%+.1f\\%%" % (100*(a-b)/b))
+    L.append("%s & %s & %s & %s & %s\\\\" % (
+        n, format(int(a), ","), delta, r["ff_total"], r["ff_native_enable"]))
 L+=[r"\bottomrule",r"\end{tabular}",r"\\[2pt]",
     r"\raggedright\scriptsize Yosys 0.63 + ABC, pre-layout cell area. ``native-EN''",
     r"counts registers mapped onto a true enable flip-flop (\texttt{edfxtp}); the",

@@ -4,6 +4,8 @@
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{tikz}
+\usepackage{xcolor}
+\definecolor{ctrlblue}{HTML}{2166AC}
 \usetikzlibrary{arrows.meta,positioning,calc,fit,backgrounds}
 \usepackage{url}
 \usepackage[caption=false,font=footnotesize]{subfig}
@@ -97,11 +99,13 @@ datapath reset style permits register packing
 (Section~\ref{sec:results}).
 \end{enumerate}
 
+\input{fig_arch}
+
 \section{Completion-Aware Gating Baseline}
 \label{sec:baseline}
-The reference design is an \NMAC-lane array of two-stage
-(multiply, accumulate) \DWID-bit MACs feeding a three-level registered adder
-tree. Each stage owns an independent gating cell parameterised by its own
+The reference design (Fig.~\ref{fig:arch}(a)) is an \NMAC-lane array of
+two-stage (multiply, accumulate) \DWID-bit MACs feeding a three-level
+registered adder tree. Each stage owns an independent gating cell parameterised by its own
 pipeline depth $D$:
 \begin{equation}
 \mathit{ce}=\mathit{pe}\vee\mathit{oa}\vee\mathit{trig},
@@ -181,7 +185,8 @@ sums so much as stop computing.
 \label{sec:fix}
 
 \subsection{Construction}
-The fix is to stop treating the clock enable as a single signal. We derive
+The fix is to stop treating the clock enable as a single signal
+(Fig.~\ref{fig:arch}(b)). We derive
 \begin{align}
 \mathit{skip} &= \mathit{valid}\wedge\left(\overline{|a}\;\vee\;\overline{|b}\right)\\
 \mathit{ce}_{\mathrm{ctrl}} &= f_{\mathrm{drain}}(\mathit{trig}=\mathit{valid})\\

@@ -1,0 +1,108 @@
+\begin{figure*}[t]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[
+  x=1cm, y=1cm, font=\footnotesize,
+  blk/.style={draw, rounded corners=1pt, minimum height=5.5mm, inner xsep=3pt, align=center},
+  gate/.style={blk, fill=black!6},
+  new/.style={blk, draw=ctrlblue, thick},
+  sig/.style={-{Latex[length=1.5mm]}},
+  nsig/.style={-{Latex[length=1.5mm]}, draw=ctrlblue},
+  lb/.style={inner sep=1.5pt, font=\scriptsize},
+  dot/.style={circle, fill, inner sep=0.7pt}
+]
+
+%% ================= panel (a) : the cascade =================
+\node[lb, anchor=west, font=\footnotesize] at (0,1.50)
+      {\textbf{(a)} each stage gates itself and wakes the next};
+
+\node[blk, minimum width=13mm] (m0) at (1.40,0.80) {MAC 0};
+\node[lb]                      at (1.40,0.34) {$\vdots$};
+\node[blk, minimum width=13mm] (m7) at (1.40,-0.12) {MAC 7};
+\node[draw, dashed, rounded corners=2pt, fit=(m0)(m7), inner sep=3pt] (arr) {};
+\node[lb, anchor=north] at (arr.south) {one gate $D{=}2$ per lane};
+
+\node[blk, minimum width=16mm, minimum height=13mm, align=center]
+      (tree) at (5.55,0.29) {3-level\\adder tree};
+\node[gate, minimum width=13mm] (tg) at (5.55,-1.35) {gate $D{=}3$};
+
+\draw[sig] (0.10,0.80) -- (m0.west);
+\draw[sig] (0.10,-0.12) -- (m7.west);
+\node[lb, anchor=east] at (0.07,0.34) {$a,b$};
+
+\draw[sig] (tg.north) -- (tree.south);
+
+% three buses leave the array block at three distinct heights
+\draw[sig] (arr.east |- 0,0.62) -- ++(1.35,0) |- (tree.west);
+\node[lb, anchor=south] at (3.55,0.66) {\texttt{acc\_bus}};
+
+\draw      (arr.east |- 0,0.02) -- (2.90,0.02) -- (2.90,-1.20);
+\draw[sig] (2.90,-1.20) -- (tg.west);
+\node[lb, anchor=south] at (3.85,-1.13) {\texttt{completion}};
+
+\draw[draw=ctrlblue] (arr.east |- 0,-0.52) -- (3.20,-0.52) -- (3.20,-1.50);
+\draw[nsig] (3.20,-1.50) -- (tg.west |- 0,-1.50);
+\node[lb, anchor=north, text=ctrlblue] at (3.95,-1.53) {\texttt{update}};
+
+\draw[sig] (tree.east) -- ++(0.80,0) node[lb, anchor=west] {\texttt{result}};
+
+%% ================= panel (b) : one lane =================
+\node[lb, anchor=west, font=\footnotesize] at (8.75,1.50)
+      {\textbf{(b)} inside one lane: the enable is \emph{split}, the skip decision is \emph{tagged}};
+
+% --- datapath row (the two WIDE banks) ---
+\node[blk, minimum width=7mm]  (mul) at (11.00,0.72) {$\times$};
+\node[blk, minimum width=16mm] (ms)  at (12.95,0.72) {\texttt{mult\_stage}};
+\node[blk, minimum width=7mm]  (add) at (14.75,0.72) {$+$};
+\node[blk, minimum width=11mm] (acc) at (16.30,0.72) {\texttt{acc}};
+
+\draw[sig] (9.45,0.72) -- (mul.west);
+\node[lb, anchor=east] at (9.42,0.72) {$a,b$};
+\draw[sig] (mul) -- (ms);
+\draw[sig] (ms) -- (add);
+\draw[sig] (add) -- (acc);
+\draw (acc.north) -- ++(0,0.32) -| (add.north);
+
+% --- control row (NEVER masked) ---
+\node[gate, minimum width=16mm] (dg) at (10.20,-0.72) {drain gate $D{=}2$};
+\node[blk,  minimum width=13mm] (vp) at (12.95,-0.72) {\texttt{valid\_pipe}};
+\node[new,  minimum width=13mm] (sp) at (15.15,-0.72) {\texttt{skip\_pipe}};
+
+\draw[sig] (8.75,-0.72) -- (dg.west);
+\node[lb, anchor=east] at (8.72,-0.72) {$valid$};
+\draw[sig] (dg.east) -- (vp.west) node[lb, anchor=south, pos=0.62, yshift=0.4mm] {$ce_{\mathrm{ctrl}}$};
+\draw[sig] (vp.east) -- (sp.west);
+\draw[sig] (sp.east) -- ++(0.75,0)
+      node[lb, anchor=west, align=left]
+      {\texttt{completion}\\\textcolor{ctrlblue}{\texttt{update}}};
+
+% --- zero detect ---
+\node[new, minimum width=15mm] (zd) at (10.45,-1.75) {zero detect};
+\draw[sig] (8.75,-1.75) -- (zd.west);
+\node[lb, anchor=east] at (8.72,-1.75) {$a,b$};
+\draw[draw=ctrlblue] (zd.east) -- (14.05,-1.75);
+\draw[nsig] (14.05,-1.75) -- (14.05,-1.05) -- (sp.south |- 0,-1.05) -- (sp.south);
+\node[lb, anchor=north, text=ctrlblue] at (12.30,-1.77) {$skip$};
+
+% --- the two sparsity-gated enables, drawn as a rail ---
+\node[dot, fill=ctrlblue] (t1) at (11.80,-0.72) {};
+\draw[draw=ctrlblue] (11.80,-0.72) -- (11.80,-0.16) -- (16.30,-0.16);
+\draw[nsig] (12.95,-0.16) -- (ms.south);
+\draw[nsig] (16.30,-0.16) -- (acc.south);
+\node[lb, anchor=east, text=ctrlblue] at (12.88,0.14) {$ce_{\mathrm{mult}}$};
+\node[lb, anchor=east, text=ctrlblue] at (16.22,0.14) {$ce_{\mathrm{acc}}$};
+
+\end{tikzpicture}}
+\caption{Architecture. (a) The array and the adder tree each own an
+independent completion-aware gate sized to their own pipeline depth $D$; there
+is no central controller, and the \texttt{update} bus (blue) is the only wire
+the sparsity extension adds between stages. (b) Within a lane the clock enable
+is split. $ce_{\mathrm{ctrl}}$ is triggered by the raw $valid$ and is never
+masked, so the drain counter is structurally blind to sparsity;
+$ce_{\mathrm{mult}}$ and $ce_{\mathrm{acc}}$ additionally carry the skip term
+and gate only the two wide register banks, which hold $64$ of the lane's
+$\approx70$ flip-flops. The skip decision is registered as $skip_p$ alongside
+$valid_p$, so the accumulate stage consults the tag belonging to \emph{its own}
+item rather than the current input bus.}
+\label{fig:arch}
+\end{figure*}
