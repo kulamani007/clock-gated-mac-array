@@ -1,0 +1,85 @@
+# ---------------------------------------------------------------------------
+# Compiled simulation binaries - regenerate with run_tests.bat
+# ---------------------------------------------------------------------------
+sim/
+*.vvp
+*.out
+
+# ---------------------------------------------------------------------------
+# Vivado / xsim working artefacts
+# ---------------------------------------------------------------------------
+.Xil/
+xsim.dir/
+*.jou
+*.log
+*.pb
+*.wdb
+*.wdf
+*.str
+webtalk*
+vivado_pid*
+
+# ---------------------------------------------------------------------------
+# Large regenerable tool outputs. Everything here is reproduced by the scripts
+# in synth/ ; committing it would add ~25 MB of undiffable binaries.
+#   checkpoints  -> run_build.bat / run_build2.bat
+#   SAIF         -> run_power.bat / run_power_post.bat
+#   netlists     -> gen_netlist.tcl
+# ---------------------------------------------------------------------------
+*.dcp
+*.saif
+synth/dcp/
+synth/saif/
+synth/saifp/
+synth/netlist/
+
+# ---------------------------------------------------------------------------
+# Per-run generated files and tool logs
+# ---------------------------------------------------------------------------
+synth/cfg_*.v
+synth/cfgr_*.v
+synth/log_*.txt
+synth/*_stage.txt
+synth/saif_*.tcl
+synth/probe*.txt
+synth/probe*.bat
+synth/test_xvlog.*
+synth/dspreg*.txt
+synth/netmatch.txt
+synth/pxerr.txt
+synth/dsp_err.txt
+synth/ir_path.txt
+synth/repo_survey.ps1
+synth/fill_stage.txt
+synth/post_stage.txt
+synth/power_stage.txt
+synth/build_stage.txt
+synth/build2_stage.txt
+synth/retry_stage.txt
+
+# ---------------------------------------------------------------------------
+# LaTeX intermediates
+# ---------------------------------------------------------------------------
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.out
+paper/*.synctex.gz
+paper/*.fdb_latexmk
+paper/*.fls
+paper/pg-*.png
+paper/pp-*.png
+paper/p2-*.png
+paper/q-*.png
+paper/r-*.png
+paper/s-*.png
+paper/f1-*.png
+paper/b.log
+paper/build.log
+
+# ---------------------------------------------------------------------------
+# OS cruft
+# ---------------------------------------------------------------------------
+Thumbs.db
+desktop.ini
+.DS_Store

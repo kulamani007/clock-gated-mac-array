@@ -1,0 +1,40 @@
+Add FPGA implementation flow, DSP-friendly variant, and TCAS-II paper draft
+
+Implementation (Vivado 2023.2, xc7a100tcsg324-1, out of context, 4.0 ns):
+
+- Add pipelined_mac_zs_dsp.v: the input-registered zero-skip MAC with no
+  datapath reset. DSP48E1 A/B/M pipeline registers accept only synchronous
+  reset, so the previous async-reset style stranded every datapath register in
+  fabric (AREG=BREG=MREG=0). Removing it gives AREG=BREG=MREG=PREG=8 and lets
+  the accumulator carry chain fold into the DSP's own adder: 530 LUT / 328 FF
+  / 63 CARRY4 / 283.0 MHz, against 789 / 546 / 127 / 269.8 MHz for the ungated
+  baseline. tb_dsp_equiv.v proves the two variants bit-identical over 3031
+  cycles and 2823 result pulses.
+
+- Add mac_cascade_dsp_nogate_top as a structural control, so the cost of the
+  gating can be separated from the cost of the extra pipeline stage and the
+  reset-style change. Against that control the gating costs +117 LUT and
+  +30 FF with no frequency penalty.
+
+- Add synth/: non-project build, SAIF power and netlist scripts, plus the
+  utilization, timing and power reports. synth/README.md documents the flow,
+  what in rpt/ is trustworthy, and two bugs found and fixed along the way (a
+  false_path on input ports that silently excluded the two-stage designs'
+  multiplier-input paths from timing analysis; and cmd FOR+CALL variable
+  scoping that ran sweep points at the wrong sparsity while labelling them
+  correctly).
+
+- Add paper/: TCAS-II Express Brief draft (IEEEtran, 4 pages), figure and
+  table generators, and the underlying measured data.
+
+Housekeeping:
+
+- Relicense from proprietary to Apache-2.0 ahead of release with the paper.
+- Add .gitignore and untrack compiled simulation binaries and Vivado
+  checkpoints (~25 MB of regenerable artefacts).
+- Delete the powerpost_* reports: that post-implementation SAIF attempt did
+  not improve net matching and several of its runs were mislabelled, so the
+  limitation is documented rather than the bad data retained.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018v8c7hTw5r3Q5wgHgqNZkZ

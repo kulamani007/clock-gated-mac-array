@@ -131,4 +131,9 @@ tb\tb_sparsity_sweep.v:154: $finish called at 48630000 (1ps)
 ========================================================
 tb\tb_zero_skip_ir.v:218: $finish called at 5650000 (1ps)
 
+===== 6. DSP-FRIENDLY RESET VARIANT (tb_dsp_equiv) =====
+cycles=3031 result_valid pulses=2823 divergences=0
+RESULT: PASS - DSP-friendly reset style is bit-identical
+tb\tb_dsp_equiv.v:68: $finish called at 30410000 (1ps)
+
 ===== ALL SIMULATIONS COMPLETED =====

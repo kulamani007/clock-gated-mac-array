@@ -44,6 +44,12 @@ if errorlevel 1 goto :fail
 vvp sim\ir
 
 echo.
+echo ===== 6. DSP-FRIENDLY RESET VARIANT (tb_dsp_equiv) =====
+iverilog -g2012 -s tb_dsp_equiv -o sim\dspeq %BASE% %ZS% rtl\pipelined_mac_zs_ir.v rtl\pipelined_mac_zs_dsp.v tb\tb_dsp_equiv.v
+if errorlevel 1 goto :fail
+vvp sim\dspeq
+
+echo.
 echo ===== ALL SIMULATIONS COMPLETED =====
 goto :eof
 

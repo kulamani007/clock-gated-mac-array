@@ -1,0 +1,6 @@
+tag,top,part,period_ns,LUT,FF,DSP,CARRY,BUFG,BUFGCE,WNS_ns,Fmax_MHz 
+base,mac_cascade_top,xc7a100tcsg324-1,4.0,789,546,8,127,0,0,0.294,269.8
+zs,mac_cascade_zs_top,xc7a100tcsg324-1,4.0,890,568,8,127,0,0,0.333,272.7
+ir,mac_cascade_zs_ir_top,xc7a100tcsg324-1,4.0,906,840,8,127,0,0,-0.935,202.6
+dsp,mac_cascade_zs_dsp_top,xc7a100tcsg324-1,4.0,530,328,8,63,0,0,0.466,283.0
+dsp0,mac_cascade_dsp_nogate_top,xc7a100tcsg324-1,4.0,413,298,8,63,0,0,0.319,271.7

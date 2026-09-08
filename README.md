@@ -264,3 +264,78 @@ and catch your own headline number being mostly unreal.
    DSP-packing risk).
 3. STA on the `ce` cone — zero-detect adds to a path already flagged critical.
 4. Re-frame the paper around composability, not novelty.
+
+---
+
+# UPDATE — FPGA implementation results and TCAS-II paper draft
+
+Synthesis and implementation are now done (Vivado 2023.2, xc7a100tcsg324-1,
+out of context, 4.0 ns target). Flow and caveats: **`synth/README.md`**.
+Paper: **`paper/main.tex`** → `paper/main.pdf`, with a submission checklist in
+`paper/SUBMISSION_NOTES.md`.
+
+## Implementation results
+
+| Design | LUT | FF | CARRY | DSP regs A/B/M/P | Fmax |
+|---|---|---|---|---|---|
+| Baseline, 2-stage, async reset | 789 | 546 | 127 | 0/0/0/8 | 269.8 MHz |
+| + split-enable zero-skip | 890 | 568 | 127 | 0/0/0/8 | 272.7 MHz |
+| + gated operand regs, async reset | 906 | 840 | 127 | 0/0/0/8 | **202.6 MHz** |
+| + gated operand regs, **no datapath reset** | 530 | 328 | 63 | **8/8/8/8** | **283.0 MHz** |
+| same, gating disabled (control) | 413 | 298 | 63 | 8/8/8/8 | 271.7 MHz |
+
+Three things came out of this that were not visible in simulation.
+
+**1. The async reset was costing a lot.** DSP48E1 A/B/M pipeline registers
+support only *synchronous* reset, so every asynchronously reset datapath
+register was stranded in fabric: `AREG=BREG=MREG=0`. Dropping the reset from
+`a_reg`/`b_reg`/`mult_stage` — they do not need one, the valid/skip tags
+enforce correctness and *those* are reset — gives `AREG=BREG=MREG=PREG=8`. The
+accumulator's carry chain is absorbed into the DSP's own adder too, halving
+CARRY4 from 127 to 63. `tb_dsp_equiv.v` proves the two variants are
+bit-identical over 3031 cycles.
+
+**2. The gating is cheap; the reset style was expensive.** Against its own
+structural control (last two rows) the gating costs +117 LUT and +30 FF with
+no frequency penalty. The gated, DSP-packed cascade ends up **33 % smaller and
+4.9 % faster than the ungated baseline it replaces**, at one extra cycle of
+latency.
+
+**3. Register-enable activity counts overstate the saving.** With
+`AREG=BREG=0` the multiplier array is driven straight from the operand ports
+and toggles every cycle regardless of any enable, so gating the *product*
+register saves the register's own load and nothing of the array behind it.
+Only gated *operand* registers quiet the array: multiplier-input transitions
+fall 2661 → 1009 (62 %) at 29 % sparsity, where the product-register-gated
+design scores zero on the same metric.
+
+## Power
+
+SAIF-driven `report_power`, compared only at matched sparsity — the ungated
+baseline itself loses 31 % of its dynamic power between s=0 and s=0.9 purely
+from reduced multiplier switching, so any comparison against an ungated design
+at s=0 is mostly measuring the data.
+
+| Design | s=0 | s=50 | s=75 | s=90 |
+|---|---|---|---|---|
+| Baseline | 70 | 65 | 58 | 48 mW |
+| + split-enable zero-skip | 72 | 56 | 43 | 29 mW |
+| *change vs. control* | *+3%* | *-14%* | *-26%* | *-40%* |
+
+Clock power is a floor: no BUFGCE is inferred (CE-based gating maps to the
+flip-flops' native enable pins, not clock-tree gating), so 20 mW of the
+baseline's dynamic power — 29 % — is untouchable by any technique in this
+class.
+
+**Known limitation.** Vivado reports confidence *Medium* with only 12–13 % of
+nets annotated, and the annotation cannot see inside a DSP48 at all, which
+biases against the DSP-packed variant. Its power figures are a lower bound;
+the paper says so rather than quoting the flattering number. Details in
+`synth/README.md`.
+
+## Licence change
+
+This repository was previously marked proprietary. It is now **Apache-2.0**,
+in preparation for release alongside the paper. It stays private until
+submission; the paper's reproducibility statement requires it to be public
+*at submission*, since reviewers are precisely who needs access.

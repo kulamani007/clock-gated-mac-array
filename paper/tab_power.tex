@@ -1,0 +1,30 @@
+\begin{table}[t]
+\caption{Dynamic power (mW) at matched operand sparsity}
+\label{tab:power}
+\centering\footnotesize
+\setlength{\tabcolsep}{4.5pt}
+\begin{tabular}{lcccc}
+\toprule
+Design & \multicolumn{4}{c}{operand sparsity $s$ (\%)}\\
+\cmidrule(l){2-5}
+ & 0 & 50 & 75 & 90\\
+\midrule
+Baseline (2-stage, async reset) & 70 & 65 & 58 & 48\\
+\quad + split-enable zero-skip & 72 & 56 & 43 & 29\\
+\quad\emph{change vs.\ its control} & \emph{+3\%} & \emph{-14\%} & \emph{-26\%} & \emph{-40\%}\\
+\midrule
+DSP-packed, gating off & 46 & 45 & 45 & 43\\
+\quad + split-enable zero-skip & 47 & 45 & 41 & 37\\
+\quad\emph{change vs.\ its control} & \emph{+2\%} & \emph{-0\%} & \emph{-9\%} & \emph{-14\%}\\
+\midrule
+clock component (baseline) & 20 & 20 & 20 & 20\\
+\bottomrule
+\end{tabular}
+\\[2pt]
+\raggedright\scriptsize Vivado \texttt{report\_power}; confidence Medium.
+Each design is compared against its own structural control at the same
+sparsity, because the ungated baseline itself loses 31\,\% of its power
+between $s=0$ and $s=0.9$ from reduced multiplier switching alone.
+The DSP-packed rows understate the gating benefit: see
+Section~\ref{sec:results}-E.
+\end{table}
