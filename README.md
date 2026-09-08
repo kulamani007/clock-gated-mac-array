@@ -339,3 +339,37 @@ This repository was previously marked proprietary. It is now **Apache-2.0**,
 in preparation for release alongside the paper. It stays private until
 submission; the paper's reproducibility statement requires it to be public
 *at submission*, since reviewers are precisely who needs access.
+
+## Standard-cell (ASIC) corroboration
+
+Yosys + ABC against the open **sky130_fd_sc_hd** library. Details and how to
+run it: **`asic/README.md`**.
+
+| Design | area (µm²) | vs base | flip-flops | native-EN |
+|---|---|---|---|---|
+| baseline, 2-stage, async reset | 111,244 | — | 794 | 0 |
+| + split-enable zero-skip | 113,032 | +1.6 % | 816 | 0 |
+| 3-stage, gated operands, async reset | 123,614 | +11.1 % | 1088 | 0 |
+| 3-stage, no datapath reset (control) | 117,311 | +5.5 % | 1058 | 512 |
+| + split-enable zero-skip | 119,088 | +7.1 % | 1088 | 512 |
+
+**The gating is far cheaper than the FPGA numbers suggest** — +1.6 % of cell
+area on the two-stage pipeline and +1.5 % against the three-stage control,
+against +12.8 % and +28 % LUT on Artix-7. The added flip-flop count is
+identical on both targets (+22 and +30), so the gap is LUT granularity
+inflating the apparent cost of small control cones.
+
+**The reset-style penalty is not an FPGA artefact.** It reappears on the ASIC
+through an unrelated mechanism: sky130 provides an enable flip-flop and an
+async-reset flip-flop but no cell that is both, so an asynchronously reset
+register with a clock enable becomes a reset flop plus a feedback multiplexer.
+The no-reset variants map 512 registers onto native enable cells; the
+async-reset variants map none and pay +3.8 % area for the same function.
+
+So the coding rule holds on both targets, for different reasons — on FPGA it
+costs 25 % of Fmax by blocking DSP48 absorption, on ASIC it costs area by
+blocking native enable-cell mapping.
+
+Synthesis only: no place and route and no static timing, since no open STA
+tool was available. That is the largest remaining gap and the netlists in
+`asic/netlist/` are ready for OpenSTA + OpenROAD.

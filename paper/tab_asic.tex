@@ -1,0 +1,25 @@
+\begin{table}[t]
+\caption{Standard-cell synthesis, sky130\_fd\_sc\_hd (typ., 25\,$^{\circ}$C, 1.8\,V)}
+\label{tab:asic}
+\centering\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcccc}
+\toprule
+Design & area & vs.\ & \multicolumn{2}{c}{flip-flops}\\
+\cmidrule(l){4-5}
+& ($\mu$m$^2$) & base & total & native-EN\\
+\midrule
+Baseline (2-stage, async reset) & 111,244 & +0.0\% & 794 & 0\\
+\quad + split-enable zero-skip & 113,032 & +1.6\% & 816 & 0\\
+3-stage, gated operands, async reset & 123,614 & +11.1\% & 1088 & 0\\
+3-stage, no datapath reset (control) & 117,311 & +5.5\% & 1058 & 512\\
+\quad + split-enable zero-skip & 119,088 & +7.1\% & 1088 & 512\\
+\bottomrule
+\end{tabular}
+\\[2pt]
+\raggedright\scriptsize Yosys 0.63 + ABC, pre-layout cell area. ``native-EN''
+counts registers mapped onto a true enable flip-flop (\texttt{edfxtp}); the
+library provides an enable cell and an async-reset cell but none that is
+both, so asynchronously reset registers with a clock enable become a reset
+flop plus a feedback multiplexer instead.
+\end{table}

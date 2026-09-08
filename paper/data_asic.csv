@@ -1,0 +1,6 @@
+tag,top,area_um2,ff_async_reset,ff_native_enable,ff_total
+base,mac_cascade_top,111244,794,0,794
+zs,mac_cascade_zs_top,113032,816,0,816
+ir,mac_cascade_zs_ir_top,123614,1088,0,1088
+dsp0,mac_cascade_dsp_nogate_top,117311,546,512,1058
+dsp,mac_cascade_zs_dsp_top,119088,576,512,1088

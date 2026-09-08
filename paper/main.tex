@@ -89,11 +89,12 @@ downstream adder tree (Section~\ref{sec:fix}).
 \item An equivalence-based verification method that uses the broken design as
 a negative control, so that the passing result is shown to be non-vacuous
 (Section~\ref{sec:verif}).
-\item Post-implementation evidence that register-enable activity counts,
-the metric usually quoted for such schemes, can overstate the achievable
-saving by the entire multiplier contribution, and that the resulting
-correction is affordable only if the datapath reset style permits DSP
-packing (Section~\ref{sec:results}).
+\item Post-implementation evidence on both an FPGA and an open
+standard-cell flow that register-enable activity counts, the metric usually
+quoted for such schemes, can overstate the achievable saving by the entire
+multiplier contribution, and that the correction is affordable only if the
+datapath reset style permits register packing
+(Section~\ref{sec:results}).
 \end{enumerate}
 
 \section{Completion-Aware Gating Baseline}
@@ -379,6 +380,39 @@ Table~\ref{tab:area}, and the direct switching measurement of
 Section~\ref{sec:results}-B, in which multiplier-input transitions fall by
 62\,\%.
 
+\subsection{Standard-cell corroboration}
+The FPGA numbers are entangled with a hard macro: the reset style decides
+whether the operand registers pack into the DSP48, which decides whether the
+multiplier can be quieted at all. To separate what is architectural from what
+is an artefact of that macro, all five designs were also synthesised to the
+open sky130\_fd\_sc\_hd standard-cell library with Yosys and ABC
+(Table~\ref{tab:asic}). There is no hard multiplier here; the array is
+ordinary gates.
+
+\input{tab_asic}
+
+Two things follow. First, \emph{the gating is cheaper than the FPGA suggests}:
+it costs $+1.6\,\%$ of cell area on the two-stage pipeline and $+1.5\,\%$
+against the three-stage control, against the $+12.8\,\%$ and $+28\,\%$ LUT
+figures of Table~\ref{tab:area}. The added flip-flop count is identical on
+both targets ($+22$ and $+30$), so the discrepancy is LUT granularity
+inflating the apparent cost of small control cones, not a real difference.
+
+Second, and less expected, \emph{the reset-style penalty is not an FPGA
+artefact}. It reappears on the ASIC through an unrelated mechanism: the
+library offers an enable flip-flop and an asynchronous-reset flip-flop but no
+cell that is both, so an asynchronously reset register carrying a clock enable
+must be built as a reset flop plus a feedback multiplexer. The no-reset
+variants map 512 registers onto native enable cells; the asynchronously reset
+variants map none, and pay $+3.8\,\%$ area for the same function. A gating
+scheme is therefore only as good as the register style it is written in, on
+either target --- which is the practical lesson we would most want a reader to
+take from this brief.
+
+These are synthesis results only: no place and route, and no static timing,
+since no open STA tool was available in the environment used. Area is
+pre-layout cell area and the comparison is relative.
+
 \section{Conclusion}
 Sparsity gating and completion-aware clock gating do not compose. The standard
 zero-skip enable applied to a drain-gated MAC pipeline destroys 63\,\% of
@@ -387,10 +421,16 @@ structural rather than incidental, so it will recur in any design combining
 the two. Splitting the enable into a never-masked control enable and a
 per-item-tagged datapath enable restores composability with no loss of
 throughput and no change to completion timing. Two secondary results are of
-independent interest: register-enable activity counts substantially overstate
-the benefit of gating a multiplier's output register, and asynchronous
-datapath resets silently prevent the DSP packing on which the genuine saving
-depends.
+independent interest. Register-enable activity counts substantially overstate
+the benefit of gating a multiplier's output register, because gating a
+pipeline register downstream of a combinational block does not quiet that
+block. And the reset style in which a gated register is written decides
+whether the technique is affordable at all: asynchronous datapath resets cost
+25\,\% of $F_{\max}$ on the FPGA by blocking DSP48 absorption, and $3.8\,\%$
+of cell area on sky130 by forcing every enabled register into a reset flop
+with a feedback multiplexer. The mechanisms are unrelated; the coding rule is
+the same. A gating scheme is only as good as the register style it is written
+in.
 
 \begin{thebibliography}{99}
 \bibitem{benini} L.~Benini and G.~De~Micheli, ``Automatic synthesis of

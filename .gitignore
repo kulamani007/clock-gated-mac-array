@@ -58,6 +58,18 @@ synth/build2_stage.txt
 synth/retry_stage.txt
 
 # ---------------------------------------------------------------------------
+# ASIC flow. The liberty file is a 12 MB third-party download (asic/get_lib.ps1
+# fetches it); netlists and the generated .ys scripts are reproducible output.
+# ---------------------------------------------------------------------------
+asic/lib/
+asic/netlist/
+asic/*.ys
+asic/asic_stage.txt
+asic/collect.ps1
+asic/lib_probe.ps1
+*.lib
+
+# ---------------------------------------------------------------------------
 # LaTeX intermediates
 # ---------------------------------------------------------------------------
 paper/*.aux
